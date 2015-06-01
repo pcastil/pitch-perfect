@@ -1,0 +1,25 @@
+
+Connecting Controllers
+    select first controller (first icon)
+    ctrl + drag to second controller
+
+
+ctrl-click-drag-up
+    Sets top control constraints
+
+ctrl-click-drag-left
+    Sets left control constraints
+
+
+Renaming:
+    rename ViewController - RecordSoundsViewController
+    open class file
+        update class name in comments
+        rename class to RecordSoundsViewController
+    Main.storyboard
+        select view
+        goto identity inspector
+        change class to RecordSoundsViewController
+
+        
+
