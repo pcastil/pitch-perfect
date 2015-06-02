@@ -25,9 +25,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        recordingEnding.hidden = true
-        recordingInProgress.text = "Tap to Record"
-        recordButton.enabled = true
+
+        reset()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,9 +35,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func recordStop(sender: UIButton) {
-        recordingEnding.hidden = true
-        recordingInProgress.text = "Tap to Record"
-        recordButton.enabled = true
+        reset()
 
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
@@ -78,11 +75,18 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         if (flag) {
             recordedAudio = RecordedAudio(url: recorder.url, title: recorder.url.lastPathComponent!)
 
-            self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+            performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
             recordButton.enabled = true
             recordingEnding.enabled = true
         }
+    }
+
+    func reset() {
+        // Resets the UI
+        recordingEnding.hidden = true
+        recordingInProgress.text = "Tap to Record"
+        recordButton.enabled = true
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
